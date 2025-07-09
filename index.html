@@ -12,6 +12,7 @@
   <!-- Entry Form -->
   <div class="entry-form" id="main-form">
     <p><strong>Date:</strong> <span id="today-date"></span></p>
+
     <textarea id="journal-text" placeholder="How did your day go?"></textarea>
 
     <label for="rating">Rating (0-10):</label>
@@ -19,18 +20,20 @@
 
     <br /><br />
     <label for="emoji">Emoji of the day (optional):</label>
-    <input class="emoji-select" id="emoji" type="text" maxlength="2" placeholder=" " />
+    <input class="emoji-select" id="emoji" type="text" maxlength="2" placeholder="😊" />
 
     <br /><br />
     <button onclick="saveEntry()">Save Entry</button>
   </div>
 
-  <!-- Calendar View -->
+  <!-- Calendar Controls and Month Title -->
   <h2 style="text-align:center;" id="month-year-title">Loading...</h2>
   <div class="calendar-controls" style="text-align:center; margin-bottom: 10px;">
     <button onclick="changeMonth(-1)">← Previous</button>
     <button onclick="changeMonth(1)">Next →</button>
   </div>
+
+  <!-- Calendar Grid -->
   <div class="calendar" id="calendar-section">
     <div class="calendar-grid" id="calendar"></div>
   </div>
