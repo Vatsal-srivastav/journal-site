@@ -42,7 +42,8 @@ function generateCalendar() {
   }
 
   for (let d = 1; d <= lastDate; d++) {
-    const dateStr = new Date(year, month, d).toISOString().split('T')[0];
+    const dateObj = new Date(year, month, d);
+    const dateStr = dateObj.toISOString().split('T')[0];
     const entry = localStorage.getItem('entry-' + dateStr);
     const dayDiv = document.createElement('div');
     dayDiv.className = 'day';
@@ -51,18 +52,25 @@ function generateCalendar() {
     if (entry) {
       const parsed = JSON.parse(entry);
       dayDiv.classList.add(getColorClass(parsed.rating));
-      dayDiv.onclick = () => showEntry(dateStr, parsed);
     }
 
+    dayDiv.onclick = () => showDayLog(dateStr);
     calendar.appendChild(dayDiv);
   }
 }
 
-function showEntry(date, entry) {
-  document.getElementById('entry-date').innerText = date;
-  document.getElementById('entry-rating').innerText = entry.rating;
-  document.getElementById('entry-emoji').innerText = entry.emoji || '(none)';
-  document.getElementById('entry-text').innerText = entry.text;
+function showDayLog(dateStr) {
+  const entry = localStorage.getItem('entry-' + dateStr);
+  if (!entry) {
+    alert('No journal entry found for this day.');
+    return;
+  }
+
+  const parsed = JSON.parse(entry);
+  document.getElementById('entry-date').innerText = dateStr;
+  document.getElementById('entry-rating').innerText = parsed.rating;
+  document.getElementById('entry-emoji').innerText = parsed.emoji || '(none)';
+  document.getElementById('entry-text').innerText = parsed.text;
   document.getElementById('entry-view').classList.remove('hidden');
 }
 
