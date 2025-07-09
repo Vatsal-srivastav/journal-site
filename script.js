@@ -19,8 +19,8 @@ function saveEntry() {
   const rating = parseInt(document.getElementById('rating').value);
   const emoji = document.getElementById('emoji').value;
 
-  const now = new Date().toISOString().split('T')[0];
-  if (todayStr !== now) {
+  const nowStr = new Date().toISOString().split('T')[0];
+  if (todayStr !== nowStr) {
     alert('You can only journal for today!');
     return;
   }
@@ -33,6 +33,7 @@ function saveEntry() {
   const entry = { text, rating, emoji };
   localStorage.setItem('entry-' + todayStr, JSON.stringify(entry));
   generateCalendar();
+  calculateStreak();
   alert('Saved!');
 }
 
@@ -62,16 +63,16 @@ function generateCalendar() {
     dayDiv.className = 'day';
     dayDiv.innerText = d;
 
-    const isToday = dateStr === todayStr;
-    const isPast = date < today;
-    const isFuture = date > today;
+    const isPastOrToday = date <= today;
 
     if (entry) {
       const parsed = JSON.parse(entry);
       dayDiv.classList.add(getColorClass(parsed.rating));
-      dayDiv.onclick = () => showDayLog(dateStr);
-    } else if (!isFuture && (isPast || isToday)) {
-      // Allow click even if empty for past days (optional)
+      if (isPastOrToday) {
+        dayDiv.onclick = () => showDayLog(dateStr);
+      }
+    } else if (isPastOrToday) {
+      // Clickable to check if no entry
       dayDiv.onclick = () => showDayLog(dateStr);
     }
 
@@ -117,4 +118,23 @@ function changeMonth(delta) {
   generateCalendar();
 }
 
+function calculateStreak() {
+  const streakDisplay = document.getElementById('streak-count');
+  let streak = 0;
+  let date = new Date();
+
+  while (true) {
+    const dateStr = date.toISOString().split('T')[0];
+    if (localStorage.getItem('entry-' + dateStr)) {
+      streak++;
+      date.setDate(date.getDate() - 1);
+    } else {
+      break;
+    }
+  }
+
+  streakDisplay.innerText = streak;
+}
+
 generateCalendar();
+calculateStreak();
