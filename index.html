@@ -1,33 +1,40 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Daily Journal</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <h1>Daily Journal</h1>
-  <div class="entry-form">
+
+  <!-- Entry Form -->
+  <div class="entry-form" id="main-form">
     <p><strong>Date:</strong> <span id="today-date"></span></p>
     <textarea id="journal-text" placeholder="How did your day go?"></textarea>
+
     <label for="rating">Rating (0-10):</label>
-    <input type="number" id="rating" min="0" max="10">
-    <br><br>
+    <input type="number" id="rating" min="0" max="10" />
+
+    <br /><br />
     <label for="emoji">Emoji of the day (optional):</label>
-    <input class="emoji-select" id="emoji" type="text" maxlength="2" placeholder="😊">
-    <br><br>
+    <input class="emoji-select" id="emoji" type="text" maxlength="2" placeholder=" " />
+
+    <br /><br />
     <button onclick="saveEntry()">Save Entry</button>
   </div>
 
-  <h2 style="text-align:center;">Monthly Calendar</h2>
-  <div class="calendar">
+  <!-- Calendar View -->
+  <h2 style="text-align: center;">Monthly Calendar</h2>
+  <div class="calendar" id="calendar-section">
     <div class="calendar-grid" id="calendar"></div>
   </div>
 
+  <!-- Journal View for Specific Day -->
   <div class="entry-form hidden" id="entry-view">
-    <h3>Journal for <span id="entry-date"></span></h3>
+    <button onclick="backToMain()" style="position: absolute; top: 20px; left: 20px; font-size: 1.5rem;">←</button>
+    <h3 style="margin-top: 40px;">Journal for <span id="entry-date"></span></h3>
     <p><strong>Rating:</strong> <span id="entry-rating"></span></p>
     <p><strong>Emoji:</strong> <span id="entry-emoji"></span></p>
     <p><strong>Notes:</strong></p>
