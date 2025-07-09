@@ -34,7 +34,9 @@ h1, h2, h3 {
   transition: all 0.3s ease;
 }
 
-textarea, input[type=number], input[type=text] {
+textarea,
+input[type=number],
+input[type=text] {
   width: 100%;
   padding: 10px;
   border: 2px solid #ddd;
@@ -44,7 +46,9 @@ textarea, input[type=number], input[type=text] {
   box-sizing: border-box;
 }
 
-input[type=number]:focus, textarea:focus, input[type=text]:focus {
+input[type=number]:focus,
+textarea:focus,
+input[type=text]:focus {
   outline: none;
   border-color: var(--accent);
 }
@@ -91,11 +95,11 @@ button:hover {
 }
 
 .color-0-3 { background: var(--red); color: white; }
-.color-4 { background: var(--orange); color: white; }
-.color-5 { background: var(--yellow); color: #000; }
+.color-4   { background: var(--orange); color: white; }
+.color-5   { background: var(--yellow); color: #000; }
 .color-6-7 { background: var(--light-green); color: #000; }
 .color-8-9 { background: var(--green); color: white; }
-.color-10 { background: var(--dark-green); color: white; }
+.color-10  { background: var(--dark-green); color: white; }
 
 .hidden {
   display: none;
@@ -107,4 +111,55 @@ button:hover {
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #ddd;
+}
+
+/* Month controls */
+.calendar-controls button {
+  background-color: var(--accent);
+  color: white;
+  padding: 8px 14px;
+  margin: 5px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.calendar-controls button:hover {
+  background-color: #3730a3;
+}
+
+/* Mobile responsive layout */
+@media (max-width: 600px) {
+  .entry-form, .calendar, #entry-view {
+    margin: 15px 10px;
+    padding: 20px;
+  }
+
+  textarea,
+  input[type=number],
+  input[type=text] {
+    font-size: 1rem;
+  }
+
+  .calendar-grid {
+    gap: 6px;
+  }
+
+  .day {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .calendar-controls button {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+
+  button[onclick="backToMain()"] {
+    font-size: 1.2rem !important;
+    top: 10px;
+    left: 10px;
+  }
 }
