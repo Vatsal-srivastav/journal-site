@@ -67,11 +67,22 @@ function showDayLog(dateStr) {
   }
 
   const parsed = JSON.parse(entry);
+
+  document.querySelector('.entry-form').classList.add('hidden');
+  document.querySelector('.calendar').classList.add('hidden');
+
   document.getElementById('entry-date').innerText = dateStr;
   document.getElementById('entry-rating').innerText = parsed.rating;
   document.getElementById('entry-emoji').innerText = parsed.emoji || '(none)';
   document.getElementById('entry-text').innerText = parsed.text;
+
   document.getElementById('entry-view').classList.remove('hidden');
+}
+
+function backToMain() {
+  document.querySelector('.entry-form').classList.remove('hidden');
+  document.querySelector('.calendar').classList.remove('hidden');
+  document.getElementById('entry-view').classList.add('hidden');
 }
 
 generateCalendar();
