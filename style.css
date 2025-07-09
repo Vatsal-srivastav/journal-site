@@ -113,7 +113,6 @@ button:hover {
   border: 1px solid #ddd;
 }
 
-/* Month controls */
 .calendar-controls button {
   background-color: var(--accent);
   color: white;
@@ -130,7 +129,21 @@ button:hover {
   background-color: #3730a3;
 }
 
-/* Mobile responsive layout */
+.streak-banner {
+  max-width: 600px;
+  margin: 20px auto 10px auto;
+  padding: 15px;
+  text-align: center;
+  background: #ffeaa7;
+  border: 2px solid #f1c40f;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #e17055;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+}
+
+/* Mobile responsiveness */
 @media (max-width: 600px) {
   .entry-form, .calendar, #entry-view {
     margin: 15px 10px;
