@@ -26,7 +26,11 @@
   </div>
 
   <!-- Calendar View -->
-  <h2 style="text-align: center;">Monthly Calendar</h2>
+  <h2 style="text-align:center;" id="month-year-title">Loading...</h2>
+  <div class="calendar-controls" style="text-align:center; margin-bottom: 10px;">
+    <button onclick="changeMonth(-1)">← Previous</button>
+    <button onclick="changeMonth(1)">Next →</button>
+  </div>
   <div class="calendar" id="calendar-section">
     <div class="calendar-grid" id="calendar"></div>
   </div>
