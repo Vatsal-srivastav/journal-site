@@ -44,6 +44,7 @@ input[type=text] {
   margin-bottom: 15px;
   font-size: 1rem;
   box-sizing: border-box;
+  resize: vertical;
 }
 
 input[type=number]:focus,
